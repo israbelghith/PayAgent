@@ -82,10 +82,10 @@ async deleteAll()
 {
  // const storedData= await this.storage.get('myFactureListe') || [];
   this.storage.forEach((v,k) => {
-    if(k==='agent' || k==='myFactureListe')
-    {
+   // if(k==='agent' || k==='myFactureListe')
+   // {
     this.storage.remove(k);
-    }
+   // }
    });
 }
 

@@ -62,12 +62,12 @@ getPaiement()
     return this.storage.set(STORAGE_KEY, storedData);
   }
 
-  chercherParSecteur(secteur: string): Observable<Facture[]> {
+  /*chercherParSecteur(secteur: string): Observable<Facture[]> {
     return this.http.get<Facture[]>(
       this.apiURL + '/secteur/' + secteur,
       httpOptions
     );
-  }
+  }*/
 
   async delete(fact: Facture) {
     const storedData = (await this.storage.get(STORAGE_KEY)) || [];

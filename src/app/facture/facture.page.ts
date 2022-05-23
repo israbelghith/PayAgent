@@ -11,6 +11,7 @@ import { PaiementPage } from '../paiement/paiement.page';
 import { FactureService } from '../services/facture.service';
 import { Router } from '@angular/router';
 import { AuthentificationService } from '../services/authentification.service';
+import { Paiement } from '../model/paiement.model';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class FacturePage implements OnInit {
   selectedReference;
   factures = [];
    agent: any;
+   paiement=new Paiement();
   constructor(
     private dataService: DataService,
     public modalController: ModalController,
@@ -75,7 +77,7 @@ list3.push(i);
   }
   async addData() {
     const secteur = this.authentificationService.getSecteur();
-    this.dataService.chercherParSecteur(secteur).subscribe(async (arg) => {
+    this.factureService.chercherParSecteur(secteur).subscribe(async (arg) => {
       this.list = arg;
       console.log(arg);
       for (let i=0; i<arg.length;i++) {
@@ -98,7 +100,11 @@ list3.push(i);
           mt=mt+ this.factlist[i].montant;
           console.log(i, this.factlist[i].montant);
       }
+////
+this.paiement.modePaiement='espèce';
+this.paiement.etat='payé';
 
+////
     const dataTab = [
         {
           mode: 'espèce',

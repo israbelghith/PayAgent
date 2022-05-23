@@ -46,8 +46,9 @@ export class AuthentificationPage implements OnInit {
     subscribe( agt =>{ this.u = agt;
     this.dataService.addAgent(agt);
 this.authentifierService.saveSecteur(agt.secteur);
+console.log(agt.secteur);
     if(this.u.role.role==='agent'){
-      this.router.navigate(['/historique-paiement']);
+      this.router.navigate(['/folder/:id']);
     }
 
   else{

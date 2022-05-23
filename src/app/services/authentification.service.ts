@@ -45,7 +45,7 @@ export class AuthentificationService {
     console.log(this.secteur);
   }
   getSecteur()
-  {
+  {console.log(this.secteur);
     return this.secteur;
   }
 
