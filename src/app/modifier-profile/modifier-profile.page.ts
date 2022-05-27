@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Utilisateur } from '../model/utilisateur.model';
 import { AuthentificationService } from '../services/authentification.service';
+import { DataService } from '../services/data.service';
 import { UtilisateurService } from '../services/utilisateur.service';
 
 @Component({
@@ -12,13 +13,10 @@ export class ModifierProfilePage implements OnInit {
 
   currentUtilisateur = new Utilisateur();
   constructor(public authService: AuthentificationService,
-    private utilisateurService: UtilisateurService) { }
+    private utilisateurService: UtilisateurService,
+    private dataService: DataService) { }
 
   ngOnInit() {
-    this.utilisateurService.chercherParEmail(this.authService.loggedUser).
-    subscribe( cais =>{ this.currentUtilisateur = cais;
-    console.log(this.currentUtilisateur);
-    console.log(this.authService.loggedUser);
-    } ) ;
+    this.currentUtilisateur=this.dataService.getAgent();
   }
 }

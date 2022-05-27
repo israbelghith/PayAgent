@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import * as CordovaSQLiteDriver from 'localforage';
 import { Observable } from 'rxjs';
+import { Agent } from '../model/agent.model';
 import { Facture } from '../model/facture.model';
 const STORAGE_KEY = 'myFactureListe';
 
@@ -15,9 +16,9 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class DataService {
-  apiURL?: string = 'http://localhost:8080/caisses/facture';
+  apiURL?: string = 'http://192.168.1.123:8080/caisses/facture';
   list: any;
-
+agent=new Agent();
   constructor(private storage: Storage, private http: HttpClient) {
     this.init();
   }
@@ -34,9 +35,17 @@ export class DataService {
   }
 
   getAgent() {
-    const agt=this.storage.get('agent');
-    return agt;
+   // const agt=this.storage.get('agent');
+    this.storage.forEach((v,k) => {
+      if(k=== 'agent')
+      {
+        this.agent=v;
+      }
+     });
+     return this.agent;
   }
+
+
 getPaiement()
 {
   return this.storage.get(STORAGE_KEY) || [];
@@ -51,7 +60,7 @@ getPaiement()
     let id = (await this.storage.length()) + 1;
     await this.storage.set(id.toString(), value);
   }
-  async addAgent(value: any) {
+  async addAgent(value: Agent) {
     await this.storage.set('agent', value);
   }
 

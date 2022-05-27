@@ -12,18 +12,22 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PaiementService {
-  apiURL?: string = 'http://localhost:8080/caisses/paiementAvecFacture';
+  apiURL?: string = 'http://192.168.1.123:8080/caisses/paiementAvecFacture';
   list: any;
 
   constructor( private storage: Storage,  private http: HttpClient) {
     this.init();
   }
 
-  payerFactures(paiements: any[]): Observable<Paiement[]> {
-    return this.http.post<Paiement[]>(
-      this.apiURL + '/paiementAgent', paiements, httpOptions
+  payerFactures(paiements: any[]): Observable<Paiement> {
+    return this.http.post<Paiement>(
+      this.apiURL + '/ajouterPaiement', paiements, httpOptions
     );
   }
+  modifierFactures(factures: Facture[] ): Observable<Facture[]> {
+    return this.http.put<Facture[]>(this.apiURL + '/payer',factures, httpOptions);
+  }
+
 //fct create paiement
 async init(){
   await this.storage.create();
@@ -58,10 +62,9 @@ lister(){
    });
   return listPaiement;
 }
-
+/*
   async delete(fact: Facture)
 {
-
   const storedData= await this.storage.get('myFactureListe') || [];
   this.storage.forEach((v,k) => {
     if(k === 'myFactureListe')
@@ -77,15 +80,15 @@ lister(){
     }
    });
  // this.storage.remove(key);
-}
+}*/
 async deleteAll()
 {
  // const storedData= await this.storage.get('myFactureListe') || [];
   this.storage.forEach((v,k) => {
-   // if(k==='agent' || k==='myFactureListe')
-   // {
+if(k=== 'myFactureListe' || k==='agent')
+{
     this.storage.remove(k);
-   // }
+  }
    });
 }
 

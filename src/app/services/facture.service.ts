@@ -11,7 +11,7 @@ const httpOptions = {
 })
 export class FactureService {
 
-  apiURL?: string = 'http://localhost:8080/caisses/facture';
+  apiURL?: string = 'http://192.168.1.123:8080/caisses/facture';
     constructor(private http: HttpClient) {
     }
     chercherFactureRefFacture(id: number): Observable<Facture[]>{
@@ -31,4 +31,5 @@ export class FactureService {
       return this.http.get<Facture[]>(this.apiURL + '/secteur/' + secteur, httpOptions
       );
     }
+
 }

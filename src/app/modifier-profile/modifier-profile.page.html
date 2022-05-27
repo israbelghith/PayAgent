@@ -16,8 +16,8 @@
   <form>
 
     <ion-item lines="full">
-      <ion-label position="floating">Prenom</ion-label>
-      <ion-input type="text" required id="prenom" name="prenom"  ></ion-input>
+      <ion-label position="floating">Prénom</ion-label>
+      <ion-input type="text" required id="prenom" name="prenom" [(ngModel)]="currentUtilisateur.prenom" ></ion-input>
     </ion-item>
 
     <ion-item lines="full">
@@ -36,7 +36,7 @@
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Mot de passe</ion-label>
-      <ion-input type="text" id="motDePasse" name="motDePasse" required [(ngModel)]="currentUtilisateur.motDePasse" ></ion-input>
+      <ion-input  type="password" id="motDePasse" name="motDePasse" required [(ngModel)]="currentUtilisateur.motDePasse" ></ion-input>
     </ion-item>
     <br><br>
 

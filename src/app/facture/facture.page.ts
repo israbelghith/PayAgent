@@ -100,21 +100,19 @@ list3.push(i);
           mt=mt+ this.factlist[i].montant;
           console.log(i, this.factlist[i].montant);
       }
-////
+////da
+  ///  Paiement=new Paiement('espèce',new Date(),'espèce','payé',this.dataService.getAgent(),this.factlist);
 this.paiement.modePaiement='espèce';
-this.paiement.etat='payé';
-
+this.paiement.factures=this.factlist;
+this.paiement.dateP=new Date();
+this.paiement.agent= this.dataService.getAgent();
 ////
-    const dataTab = [
+    const dataTab =
         {
-          mode: 'espèce',
-          date: new Date(),
-          etat: 'payé',
-          factures: this.factlist,
-          totalMontant: mt,
-          agent:this.dataService.getAgent()
-        },
-      ];
+          paiement:this.paiement,
+          totalMontant: mt
+        };
+
       await this.paiementService.addPaiement(dataTab);
       this.modifierFacture();
 
