@@ -10,7 +10,7 @@ import { Utilisateur } from '../model/utilisateur.model';
 })
 export class AuthentificationService {
 
-  apiURL= 'http://192.168.1.123:8080/caisses';
+  apiURL= 'http://localhost:8080/caisses';
   token: string;
   isloggedIn = false;
   public loggedUser: string;

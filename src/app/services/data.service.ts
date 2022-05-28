@@ -16,7 +16,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class DataService {
-  apiURL?: string = 'http://192.168.1.123:8080/caisses/facture';
+  apiURL?: string = 'http://localhost:8080/caisses/facture';
   list: any;
 agent=new Agent();
   constructor(private storage: Storage, private http: HttpClient) {

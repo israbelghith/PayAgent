@@ -2,10 +2,11 @@ import { PaiementPage } from './../paiement/paiement.page';
 /* eslint-disable @typescript-eslint/prefer-for-of */
 import { DataService } from './../services/data.service';
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { PaiementService } from '../services/paiement.service';
 import { Paiement } from '../model/paiement.model';
 import { FactureService } from '../services/facture.service';
+import { VerifAuthentificationPage } from '../verif-authentification/verif-authentification.page';
 
 @Component({
   selector: 'app-historique-paiement',
@@ -21,7 +22,8 @@ export class HistoriquePaiementPage implements OnInit {
     private paiementService: PaiementService,
     private toast: ToastController,
     private dataService: DataService,
-    private factureService: FactureService
+    private factureService: FactureService,
+    private modalController: ModalController
   ) {}
 
   ngOnInit(): void {
@@ -53,9 +55,29 @@ export class HistoriquePaiementPage implements OnInit {
      });
   }
 
+
     console.log(this.list);
     this.paiementService.payerFactures(this.listePaiement).subscribe();
  //   console.log(this.dataService.getAgent());
   }
 
+  async openModal() {
+
+    const modal = await this.modalController.create({
+      component: VerifAuthentificationPage,
+      componentProps: {
+
+      },
+    });
+
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned.data === 'ok') {
+        console.log(dataReturned.data);
+        //this.modifierFacture();
+        this.transfererPaiement();
+      }
+    });
+
+    return await modal.present();
+  }
 }

@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PaiementService {
-  apiURL?: string = 'http://192.168.1.123:8080/caisses/paiementAvecFacture';
+  apiURL?: string = 'http://localhost:8080/caisses/paiementAvecFacture';
   list: any;
 
   constructor( private storage: Storage,  private http: HttpClient) {

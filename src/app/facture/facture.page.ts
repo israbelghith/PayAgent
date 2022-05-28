@@ -34,7 +34,7 @@ export class FacturePage implements OnInit {
    paiement=new Paiement();
   constructor(
     private dataService: DataService,
-    public modalController: ModalController,
+    private modalController: ModalController,
     private paiementService: PaiementService,
     private factureService: FactureService,
     private router: Router,

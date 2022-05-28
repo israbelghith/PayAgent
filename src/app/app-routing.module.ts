@@ -39,6 +39,10 @@ const routes: Routes = [
     path: 'modifier-profile',
     loadChildren: () => import('./modifier-profile/modifier-profile.module').then( m => m.ModifierProfilePageModule)
   },
+  {
+    path: 'verif-authentification',
+    loadChildren: () => import('./verif-authentification/verif-authentification.module').then( m => m.VerifAuthentificationPageModule)
+  },
 ];
 
 @NgModule({
